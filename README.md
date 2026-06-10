@@ -39,6 +39,26 @@ Por defecto el extractor:
 - excluye sponsors del JSON final;
 - deduplica noticias repetidas entre newsletters por URL canónica y por similitud temática del título/resumen.
 
+## Handoff a ChatGPT
+
+Una vez generado `output/articles.json`, puedes construir un paquete listo para pegar en ChatGPT:
+
+```bash
+python src/build_editorial_handoff.py \
+  --articles output/articles.json \
+  --prompt editorial_prompt.md \
+  --out output/editorial_handoff.md
+```
+
+Ese archivo contiene:
+
+- resumen de extracción;
+- warnings si existen;
+- el prompt editorial;
+- el JSON completo.
+
+El flujo completo está documentado en [WORKFLOW.md](WORKFLOW.md).
+
 ## Qué devuelve
 
 Un JSON con esta estructura:
@@ -70,5 +90,5 @@ Un JSON con esta estructura:
 
 1. Probar con dos URLs `View Online` reales.
 2. Ajustar parser si TLDR cambia el HTML.
-3. Conectar con Gmail/Apps Script/n8n/GitHub Actions.
-4. Pasar el JSON a OpenAI/ChatGPT para selección editorial y resumen final.
+3. Automatizar obtención de URLs desde Gmail/Outlook.
+4. Automatizar el envío del handoff a ChatGPT/OpenAI si se quiere cerrar el circuito.
