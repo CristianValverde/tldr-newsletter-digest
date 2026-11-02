@@ -1,3 +1,8 @@
+# Legacy development prompt: initial extractor build
+
+This file is kept only as historical context for the original extractor build-out.
+It does not describe the current production workflow.
+
 # Codex task: build and validate TLDR newsletter extractor
 
 You are working on a small Python project called `tldr-digest`.

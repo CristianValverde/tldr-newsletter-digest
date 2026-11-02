@@ -16,7 +16,7 @@ from pathlib import Path
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build a ChatGPT handoff package from extracted TLDR JSON.")
     parser.add_argument("--articles", required=True, help="Path to output/articles.json.")
-    parser.add_argument("--prompt", default="editorial_prompt.md", help="Path to the editorial prompt.")
+    parser.add_argument("--prompt", default="docs/legacy/editorial_prompt.md", help="Path to the editorial prompt.")
     parser.add_argument("--out", default="-", help="Output markdown path. Use '-' for stdout.")
     return parser.parse_args()
 
@@ -29,12 +29,12 @@ def build_summary_block(data: dict) -> str:
             warnings.append(f"- {newsletter.get('source') or 'Unknown'}: {warning}")
 
     lines = [
-        "## Resumen de extracción",
+        "## Extraction summary",
         "",
-        f"- Newsletters procesadas: {data.get('newsletter_count', 0)}",
-        f"- Artículos finales: {data.get('article_count', 0)}",
+        f"- Newsletters processed: {data.get('newsletter_count', 0)}",
+        f"- Final articles: {data.get('article_count', 0)}",
         "",
-        "### Artículos brutos por newsletter",
+        "### Raw article count by newsletter",
         "",
     ]
 
@@ -48,7 +48,7 @@ def build_summary_block(data: dict) -> str:
         lines.extend(
             [
                 "",
-                "### Warnings de extracción",
+                "### Extraction warnings",
                 "",
                 *warnings,
             ]
@@ -61,17 +61,17 @@ def build_handoff(prompt_text: str, articles_json_text: str, data: dict) -> str:
     summary_block = build_summary_block(data)
     return "\n".join(
         [
-            "# Handoff para ChatGPT",
+            "# ChatGPT handoff",
             "",
-            "Pega este documento completo en ChatGPT para generar el digest editorial final.",
+            "Paste this entire document into ChatGPT to generate the final editorial digest.",
             "",
             summary_block,
             "",
-            "## Prompt editorial",
+            "## Editorial prompt",
             "",
             prompt_text.strip(),
             "",
-            "## JSON extraído",
+            "## Extracted JSON",
             "",
             "```json",
             articles_json_text.strip(),
