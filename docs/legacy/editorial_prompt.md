@@ -1,6 +1,6 @@
 # Editorial prompt for ChatGPT/OpenAI
 
-You receive JSON extracted from TLDR newsletters. Produce a concise Spanish digest.
+You receive JSON extracted from TLDR newsletters. Produce a concise English digest.
 
 ## Input
 
@@ -26,7 +26,7 @@ Each article has:
 4. Do not invent links, facts, article text, or article summaries.
 5. Split output into two sections:
 
-### Artículos principales
+### Principal articles
 Pick the most important items for:
 - AI
 - data
@@ -40,17 +40,18 @@ For each:
 - title
 - source newsletter
 - link
-- why it matters, in Spanish
-- original TLDR summary preserved as fully as possible
+- TLDR summary preserved as fully as possible and shown first
+- a separate `Why it's important` section in English after the TLDR summary
 
-### Interesantes pero secundarios
+### Interesting but secondary
 Pick a smaller set of useful or curious secondary items.
 For each:
 - title
 - source newsletter
 - link
-- 1-2 sentence Spanish summary
+- original TLDR summary preserved as fully as possible
+- optional `Why it's important` note only when it adds clear value
 
 6. Avoid low-signal product launches unless strategically relevant.
-7. If extraction warnings exist, show a short "Notas de extracción" section.
+7. If extraction warnings exist, show a short "Extraction notes" section.
 8. Keep the output dense and useful.
